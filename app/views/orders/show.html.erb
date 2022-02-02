@@ -7,7 +7,19 @@
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
   </div>
+  <%= @order.inspect %>
+  <% @line_items.each do |item| %>
+    <h1>
+    <%= item.quantity %>
+    </h1>
+    <%= image_tag "/uploads/product/image/#{item.id}/tiny_#{item.image}" %>
+    <p><%= item.description %></p>
+    <p><%= humanized_money_with_symbol item.total_price_cents / 100 %></p>
+
+  <% end %>
+  <h4>total cost: <%= humanized_money_with_symbol @order.total_cents / 100 %></h2>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
+
