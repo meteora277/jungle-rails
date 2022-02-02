@@ -7,7 +7,7 @@
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
   </div>
-  <%= @order.inspect %>
+  Email: <%= @order.email %>
   <% @line_items.each do |item| %>
     <h1>
     <%= item.quantity %>
