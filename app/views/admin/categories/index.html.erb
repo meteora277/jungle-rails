@@ -7,12 +7,21 @@
 </div>
 
 <div class="panel panel-default products">
-  <table>
+  <table class="table table-bordered">
     <tr>
-      <th>Categories</th>
-
+      <th>Category</th>
+      <th># of items</th>
     </tr>
+
+    <% @categories.each_with_index do |category, index|%>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= @items_number[index + 1] || "0"%></td>
+      </tr>
+    <% end %>
   </table>
 </div>
+
+
 
 
