@@ -70,7 +70,6 @@ RSpec.describe Product, type: :model do
       @product.price_cents = 10000
       @product.quantity = 34
       @product.save
-      puts @product.errors.full_messages.inspect
 
       expect(@product.errors.full_messages).to include("Category can't be blank")
     end
