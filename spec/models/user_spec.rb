@@ -27,11 +27,12 @@ RSpec.describe User, type: :model do
     end
     it "should throw an error if user email is already in db (not case sensitive)" do 
       @user1 = User.new
-      @user1.email = "test@test.com"
+      @user1.email = "test@test.com    "
       @user1.first_name = "bob"
       @user1.last_name = "potato"
       @user1.password = "potatoooo"
       @user1.password_confirmation = "potatoooo"
+      @user1.parse_email
       @user1.save
 
       @user2 = User.new
@@ -44,13 +45,37 @@ RSpec.describe User, type: :model do
 
       expect(@user2.errors.full_messages).to include("Email has already been taken")
     end
+    it "should login a user even if email has trailing spaces" do 
+      @user1 = User.new
+      @user1.email = "    test@test.com    "
+      @user1.first_name = "bob"
+      @user1.last_name = "potato"
+      @user1.password = "potatoooo"
+      @user1.password_confirmation = "potatoooo"
+      @user1.parse_email
+      @user1.save
+
+      expect(User.authenticate_with_credentials(@user1.email, @user1.password).email).to eql("test@test.com")
+      
+    end
     it "should throw an error if password length < 8" do
       @user = User.new
       @user.password = "sixUwu"
       @user.save
-      puts @user.errors.full_messages.inspect
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 8 characters)")
     end
 
+  end
+  describe "authenticate_with_credentials" do
+    it "should return true if user and password match" do
+      @user = User.create(
+        email: "test@test.com",
+        first_name: "bob",
+        last_name: "potato",
+        password: "potatooo",
+        password_confirmation: "potatooo"
+      )
+      expect(User.authenticate_with_credentials(@user.email, @user.password)).to eql(@user)
+    end
   end
 end
