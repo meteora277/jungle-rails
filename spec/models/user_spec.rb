@@ -45,7 +45,11 @@ RSpec.describe User, type: :model do
       expect(@user2.errors.full_messages).to include("Email has already been taken")
     end
     it "should throw an error if password length < 8" do
-      @user2
+      @user = User.new
+      @user.password = "sixUwu"
+      @user.save
+      puts @user.errors.full_messages.inspect
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 8 characters)")
     end
 
   end
