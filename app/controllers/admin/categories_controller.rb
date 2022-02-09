@@ -1,4 +1,7 @@
 class Admin::CategoriesController < ApplicationController
+  require 'dotenv/load'
+  http_basic_authenticate_with :name => ENV["USER_NAME"], :password => ENV["PASSWORD"]
+
   def index
     @categories = Category.all
     @items_number = Category.joins(:products).group(:category_id).size
