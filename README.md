@@ -1,6 +1,57 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+Jungle is a multipage e-commerce website application made with Ruby on rails. 
+
+When the user visits the website they see all of the products that are avaible for purchase. Items have 0 stock in the database are flagged as sold out.
+
+
+![Products Page](docs/product-sold-out.png)
+- - - -
+
+Once a couple of items have been added to the cart, the user can view all of their items before checking out.
+
+![Products Page](docs/my-cart.png)
+- - - -
+
+Payments are processed using the Stripe API, you can test out payments using any of stripes test cards. see below
+
+![Products Page](docs/stripe-order.png)
+- - - -
+
+## User Login
+When users register their information is saved to the database. Passwords are saved using bcrypt hashing. A new session is created until they log out.
+
+![Products Page](docs/user-login.gif)
+
+## Admin 
+- - - -
+A brief summary of the store can be found in the admin dashboard
+
+![Products Page](docs/admin-dashboard.png)
+
+- - - -
+
+The admin product page shows all the products, stock levels, and you may delete items if they are no longer offered.
+
+![Products Page](docs/all-products.png)
+- - - -
+Creating a new product is easy, just fill in a couple text fields
+
+![Products Page](docs/new-product.gif)
+
+- - - -
+
+Use the admin categories page to create a new category items can have
+
+![Products Page](docs/new-category.gif)
+
+- - - - 
+
+Overall creating this project was a good experience. It was tough working on an inherited code base, but by the end I was relatively familiar with all the different components of the project. 
+
+Some features i'd like to build in the future are 
+* updating the stock levels of the products when someone makes a purchase
+* create a more modern front end with Material UI 
 
 ## Additional Steps for Apple M1 Machines
 
